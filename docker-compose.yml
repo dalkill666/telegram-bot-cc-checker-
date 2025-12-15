@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  bot:
+    build: .
+    image: telegram-bot:local
+    container_name: telegram-bot
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.local.php:/app/config.local.php:ro
+      - ./logs:/app/logs
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
