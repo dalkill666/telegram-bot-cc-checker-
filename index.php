@@ -20,7 +20,7 @@ flush();
 
 //do processing here
 
-require "/home/arturo/www/MultiHilos/CardProcessor.php";
+require __DIR__ . '/MultiHilos/CardProcessor.php';
 require __DIR__ . "/Encryptions/Encryptions_Adyen.php";
 require __DIR__ . '/Telegram.php';
 require __DIR__ . '/MysqliDb.php';
@@ -37,7 +37,6 @@ require __DIR__ . '/vendor/vendor/autoload.php';
 require __DIR__ . "/Capsolver/vendor/autoload.php";
 
 use CapSolver\Solvers\Token\ReCaptchaV2;
-use Curlx;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;

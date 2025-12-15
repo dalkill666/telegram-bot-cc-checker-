@@ -1,18 +1,4 @@
 <?php
-// Root configuration file for Telegram Bot CC Checker
-// Created automatically — replace placeholders with real values
-
-// =======================================================
-// CONFIGURACIÓN DE BASE DE DATOS
-// =======================================================
-// Database (filled from repository config)
-define('DB_HOST', 'mysql-arturo.alwaysdata.net');
-define('DB_USERNAME', 'arturo');
-define('DB_PASSWORD', '15112003Aa!');
-define('DB_NAME', 'arturo_dior');
-
-// =======================================================
-<?php
 // Configuration loader. Keep secrets in `config.local.php` (ignored).
 
 // If a local config exists, load it. Otherwise default to placeholders.

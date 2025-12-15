@@ -1,10 +1,12 @@
 const { exec } = require("child_process");
+const path = require('path');
 
 // Función para procesar los datos de la tarjeta usando PHP
 
 function processCardData(cc, mes, ano, cvv) {
   return new Promise((resolve, reject) => {
-    const command = `php /home/arturo/www/MultiHilos/function_mass1.php ${cc} ${mes} ${ano} ${cvv}`;
+    const phpPath = path.join(__dirname, 'function_mass1.php');
+    const command = `php "${phpPath}" ${cc} ${mes} ${ano} ${cvv}`;
 
     exec(command, (error, stdout, stderr) => {
       if (error) {

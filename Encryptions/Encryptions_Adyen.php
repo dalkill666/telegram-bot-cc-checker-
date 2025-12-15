@@ -7,7 +7,7 @@ class Encryptions
     private $adyenVersion;
     private $response;
 
-    private $nodeScriptPath = '/home/arturo/www/Encryptions/src/middleware/encryptions/adyen.js';
+    private $nodeScriptPath = '';
 
     public function setData(array $data)
     {
@@ -35,7 +35,8 @@ class Encryptions
         $ppkey = escapeshellarg($this->data['ppkey'] ?? '');
         $domain = escapeshellarg($this->data['domain'] ?? '');
 
-        $command = "node {$this->nodeScriptPath} {$adyenkey} {$card} {$month} {$year} {$cvv} {$version} {$ppkey} {$domain}";
+        $nodeScript = !empty($this->nodeScriptPath) ? $this->nodeScriptPath : __DIR__ . '/src/middleware/encryptions/adyen.js';
+        $command = "node {$nodeScript} {$adyenkey} {$card} {$month} {$year} {$cvv} {$version} {$ppkey} {$domain}";
 
         $this->response = shell_exec($command);
 

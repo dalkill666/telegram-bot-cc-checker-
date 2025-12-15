@@ -5,8 +5,10 @@ After=network.target
 [Service]
 Type=simple
 User=www-data
-WorkingDirectory=/opt/telegram-bot-cc-checker
-ExecStart=/usr/bin/php -S 127.0.0.1:8080 /opt/telegram-bot-cc-checker/index.php
+# Adjust WorkingDirectory to this workspace path or change after deployment
+WorkingDirectory=/workspaces/telegram-bot-cc-checker-
+# ExecStart uses PHP built-in server; for production replace with your FPM/NGINX setup
+ExecStart=/usr/bin/php -S 127.0.0.1:8080 /workspaces/telegram-bot-cc-checker-/index.php
 Restart=always
 RestartSec=5
 

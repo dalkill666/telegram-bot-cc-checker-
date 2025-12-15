@@ -1,0 +1,32 @@
+[
+  {
+    "bin": "411111",
+    "brand": "Visa",
+    "card_type": "credit",
+    "level": "classic",
+    "issuer": "Demo Bank A",
+    "country": "US",
+    "active": true,
+    "limits": {"daily_txn_count": 100, "daily_amount_cents": 500000}
+  },
+  {
+    "bin": "555555",
+    "brand": "MasterCard",
+    "card_type": "credit",
+    "level": "world",
+    "issuer": "Demo Bank B",
+    "country": "GB",
+    "active": true,
+    "limits": {"daily_txn_count": 250, "daily_amount_cents": 2000000}
+  },
+  {
+    "bin": "378282",
+    "brand": "American Express",
+    "card_type": "credit",
+    "level": "platinum",
+    "issuer": "Demo Bank C",
+    "country": "US",
+    "active": false,
+    "limits": {"daily_txn_count": 50, "daily_amount_cents": 100000}
+  }
+]
