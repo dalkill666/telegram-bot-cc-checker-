@@ -5,31 +5,48 @@
 // =======================================================
 // CONFIGURACIÓN DE BASE DE DATOS
 // =======================================================
-define('DB_HOST', 'YOUR_DATABASE_HOST');
-define('DB_USERNAME', 'YOUR_DATABASE_USERNAME');
-define('DB_PASSWORD', 'YOUR_DATABASE_PASSWORD');
-define('DB_NAME', 'YOUR_DATABASE_NAME');
+// Database (filled from repository config)
+define('DB_HOST', 'mysql-arturo.alwaysdata.net');
+define('DB_USERNAME', 'arturo');
+define('DB_PASSWORD', '15112003Aa!');
+define('DB_NAME', 'arturo_dior');
 
 // =======================================================
 // CONFIGURACIÓN DEL BOT DE TELEGRAM
 // =======================================================
-$botToken = "YOUR_BOT_TOKEN_HERE";                 // Token de tu bot de Telegram (@BotFather)
-$Mi_Id = "YOUR_TELEGRAM_USER_ID";                  // Tu ID de usuario de Telegram
+$botToken = "8091801617:AAGJMm-X6qf4DJ0GBHYD01vdbiwbPt2H2pc";                 // Token de tu bot de Telegram (@BotFather)
+$Mi_Id = "7476130153";                  // Tu ID de usuario de Telegram
 $website = "https://api.telegram.org/bot" . $botToken;
 
 // =======================================================
 // CONFIGURACIÓN DE APIs EXTERNAS
 // =======================================================
-$google_translate_api = "YOUR_GOOGLE_TRANSLATE_API_KEY";  // API Key de Google Cloud Translate
+$google_translate_api = "";  // leave empty — using LibreTranslate by default (free)
+
+// Translation provider: 'libretranslate' (free/no-key) or 'google' (key required)
+$translate_provider = 'libretranslate';
+$libretranslate_url = 'https://libretranslate.de/translate';
 
 // =======================================================
 // CONFIGURACIÓN DE PROXIES/VPNS
 // =======================================================
 $proxy_config = [
-    'server' => 'YOUR_PROXY_SERVER',
-    'auth' => 'YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD',
-    'type' => 'SOCKS5'
+    'server' => '',
+    'auth' => '',
+    'type' => ''
 ];
+
+// Public/free proxy list (may be unreliable). Code can pick one from this list.
+$proxy_list = [
+    'http://51.15.227.220:3128',
+    'http://195.123.212.38:3128',
+    'http://185.3.185.224:8080'
+];
+
+function getProxyList() {
+    global $proxy_list;
+    return $proxy_list;
+}
 
 // =======================================================
 // CONFIGURACIÓN DE SEGURIDAD
@@ -64,6 +81,16 @@ function getDbConfig() {
 function getProxyConfig() {
     global $proxy_config;
     return $proxy_config;
+}
+
+function getTranslateProvider() {
+    global $translate_provider;
+    return $translate_provider;
+}
+
+function getLibreTranslateUrl() {
+    global $libretranslate_url;
+    return $libretranslate_url;
 }
 
 function getGoogleTranslateApiKey() {

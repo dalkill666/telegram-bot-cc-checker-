@@ -55,24 +55,53 @@ function Command($text) {
 
 
 function traducir($texto,$idioma_destino) {
-    // ⚠️ CONFIGURAR API KEY EN config.php
-    $google_api_key = getGoogleTranslateApiKey();
+    // Prefer a free provider (LibreTranslate) if configured; fallback to Google API if key present
+    $provider = function_exists('getTranslateProvider') ? getTranslateProvider() : '';
+
+    if ($provider === 'libretranslate') {
+        $url = function_exists('getLibreTranslateUrl') ? getLibreTranslateUrl() : 'https://libretranslate.de/translate';
+        $post = [
+            'q' => $texto,
+            'source' => 'auto',
+            'target' => $idioma_destino,
+            'format' => 'text'
+        ];
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $data = json_decode($response, true);
+        if (isset($data['translatedText'])) return $data['translatedText'];
+        if (isset($data[0]['translatedText'])) return $data[0]['translatedText'];
+        return $texto;
+    }
+
+    // Fallback: Google Translate (requires API key)
+    $google_api_key = function_exists('getGoogleTranslateApiKey') ? getGoogleTranslateApiKey() : '';
+    if (empty($google_api_key)) return $texto;
+
     $url = 'https://translation.googleapis.com/language/translate/v2?key=' . $google_api_key;
     $data = array(
         'q' => $texto,
         'target' => $idioma_destino,
         'format' => 'text'
     );
-    
+
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     $response = curl_exec($ch);
     curl_close($ch);
-    
-    $translation = json_decode($response, true)['data']['translations'][0]['translatedText'];
-    
-    return $translation;
+
+    $decoded = json_decode($response, true);
+    if (isset($decoded['data']['translations'][0]['translatedText'])) {
+        return $decoded['data']['translations'][0]['translatedText'];
+    }
+    return $texto;
 }
 
 function isCardExpired($expiryMonth, $expiryYear) {
