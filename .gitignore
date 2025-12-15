@@ -21,6 +21,7 @@ usuarios_tiempos.txt
 # Archivos de configuración local
 config.php
 database.php
+config.local.php
 
 # Archivos de cache
 cache/
