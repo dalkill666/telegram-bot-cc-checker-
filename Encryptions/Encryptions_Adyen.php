@@ -21,10 +21,6 @@ class Encryptions
 
     public function execute()
     {
-        if (empty($this->nodeScriptPath)) {
-            $this->response = "Error: No se ha definido la ruta del script Node.js.";
-            return;
-        }
 
         $adyenkey = escapeshellarg($this->data['adyenkey'] ?? '');
         $card = escapeshellarg($this->data['card'] ?? '');
