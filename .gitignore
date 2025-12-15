@@ -22,6 +22,9 @@ usuarios_tiempos.txt
 config.php
 database.php
 config.local.php
+# Local secrets and logs
+logs/
+error_log.txt
 
 # Archivos de cache
 cache/
