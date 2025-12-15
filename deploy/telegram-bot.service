@@ -1,0 +1,14 @@
+[Unit]
+Description=Telegram Bot CC Checker
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/telegram-bot-cc-checker
+ExecStart=/usr/bin/php -S 127.0.0.1:8080 /opt/telegram-bot-cc-checker/index.php
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

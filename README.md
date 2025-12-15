@@ -1,3 +1,53 @@
+# Telegram Bot CC Checker
+
+This repository contains a Telegram bot and supporting utilities.
+
+Quick start (development)
+
+1. Copy secrets into `config.local.php` (this file is git-ignored):
+
+   - `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_NAME`
+   - `$botToken`, `$Mi_Id`
+   - Optional: `$google_translate_api` or use LibreTranslate (default)
+
+2. Install PHP dependencies (run from repo root):
+
+```bash
+composer install --no-dev --optimize-autoloader
+```
+
+3. Install Node dependencies for subprojects with `package.json`:
+
+```bash
+# example
+cd MultiHilos && npm install --legacy-peer-deps
+```
+
+4. Start the bot for local testing using PHP built-in server:
+
+```bash
+php -S 127.0.0.1:8080 index.php
+```
+
+5. For webhook testing, expose `http://127.0.0.1:8080` with a tunnel (ngrok/localtunnel) and set Telegram webhook:
+
+```bash
+curl "https://api.telegram.org/bot<YOUR_TOKEN>/setWebhook?url=https://your-tunnel-url/"
+```
+
+Security
+
+- Do NOT commit `config.local.php` or any secrets. Rotate tokens/passwords if accidentally exposed.
+- `node_modules/` and `vendor/` are ignored; install them locally as needed.
+
+Deployment suggestions
+
+- Use Docker or a managed host with a stable public URL for webhooks.
+- Replace free public proxies with trusted proxies for production.
+
+Files added by automation
+
+- `config.php` is a template that will load `config.local.php` if present.
 # 🤖 Telegram Bot CC Checker
 
 <div align="center">
